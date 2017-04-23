@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import moment from 'moment';
 import md5 from 'crypto-js/md5';
+import moment from 'moment';
 
 function createGravatarUrl(username) {
   let userhash = md5(username);
@@ -16,6 +16,17 @@ export class ChatForm {
   constructor(formSel, inputSel) {
     this.$form = $(formSel);
     this.$input = $(inputSel);
+  }
+
+  init(submitCallback) {
+    this.$form.submit((event) => {
+      event.preventDefault();
+      let val = this.$input.val();
+      submitCallback(val);
+      this.$input.val('');
+    });
+
+    this.$form.find('button').on('click', () => this.$form.submit());
   }
 }
 
@@ -67,7 +78,6 @@ export class ChatList {
     $messageRow.get(0).scrollIntoView();
   }
 
-
   init() {
     this.timer = setInterval(() => {
       $('[data-time]').each((idx, element) => {
@@ -78,5 +88,4 @@ export class ChatList {
       });
     }, 1000);
   }
-
 }
