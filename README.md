@@ -1,4 +1,4 @@
-## Overview
+## Chattrbox
 
 <p> Web application that allows users to chat in real time.
 This application is written in Javascript and uses WebSockets and Node.js as a custom back-end </p>
